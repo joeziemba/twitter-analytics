@@ -54,7 +54,12 @@ export function ProfileCard({ isMutual, user, index }: ProfileCardProps) {
             </svg>
           )}
         </h4>
-        <p className="text-lg text-emerald-600 leading-tight mb-2">
+        <p
+          className={cn("text-lg, leading-tight mb-2", {
+            "text-gray-600": !isMutual,
+            "text-emerald-600": isMutual,
+          })}
+        >
           @{user.username}
         </p>
         <p className="text-sm text-gray-500 ">

@@ -2,14 +2,15 @@ import { useContext } from "react";
 
 import "./App.css";
 import { Controls } from "./components/Controls";
+import { FollowerList } from "./components/FollowerList";
 import { ProfileCard } from "./components/ProfileCard";
 import { SearchUserForm } from "./components/SearchUserForm";
-import { UserList } from "./components/UserList";
+import { ControlsContext } from "./contexts/ControlsContext";
 import { TwitterContext } from "./contexts/FollowersContext";
 
 function App() {
-  const { searched, searchedUser, followers, mutuals } =
-    useContext(TwitterContext);
+  const { searched, searchedUser } = useContext(TwitterContext);
+  const { followingView } = useContext(ControlsContext);
 
   return (
     <div className="app-container bg-gray-100 dark:bg-gray-800 dark:text-white">
@@ -28,12 +29,7 @@ function App() {
               <ProfileCard user={searchedUser} />
               <Controls />
 
-              <p className="text-xl text-center mb-6">
-                You follow <b>{mutuals.count}</b> of your{" "}
-                <b>{followers.count}</b> followers - that's{" "}
-                <b>{Math.floor((mutuals.count / followers.count) * 100)}%</b>
-              </p>
-              <UserList />
+              {followingView ? <FollowerList /> : <FollowerList />}
             </div>
           )}
         </div>

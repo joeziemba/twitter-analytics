@@ -10,3 +10,6 @@ interface RawTwitterUser {
 interface TwitterUser extends RawTwitterUser {
   defaultOrder: number;
 }
+
+type SortKey = "followers" | "following" | "twitter default" | "alphabetically";
+type SortOrder = "asc" | "desc";
